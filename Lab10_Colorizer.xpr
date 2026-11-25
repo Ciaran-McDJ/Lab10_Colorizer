@@ -96,20 +96,51 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/colorizer_top.sv">
+      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/baud_gen.sv">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/colorizer_top.sv"/>
-          <Attr Name="ImportTime" Val="1764805420"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/baud_gen.sv"/>
+          <Attr Name="ImportTime" Val="1762652134"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/baud_gen.sv">
+      <File Path="$PSRCDIR/sources_1/new/colour_converter_top.sv">
         <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/baud_gen.sv"/>
-          <Attr Name="ImportTime" Val="1762652134"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/input_parser_top.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/uart_receiver.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/uart_receiver.sv"/>
+          <Attr Name="ImportTime" Val="1762653328"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/uart_transmitter.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/uart_transmitter.sv"/>
+          <Attr Name="ImportTime" Val="1762653334"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/colorizer_top.sv">
+        <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/colorizer_top.sv"/>
+          <Attr Name="ImportTime" Val="1764805420"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -125,47 +156,11 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/uart_receiver.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/uart_receiver.sv"/>
-          <Attr Name="ImportTime" Val="1762653328"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/uart_transmitter.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/uart_transmitter.sv"/>
-          <Attr Name="ImportTime" Val="1762653334"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PSRCDIR/sources_1/imports/colorizer_source_files/image.mem">
         <FileInfo>
           <Attr Name="ImportPath" Val="$PPRDIR/../colorizer_source_files/image.mem"/>
           <Attr Name="ImportTime" Val="1762652990"/>
           <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/colour_converter_top.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/new/input_parser_top.sv">
-        <FileInfo>
-          <Attr Name="AutoDisabled" Val="1"/>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>

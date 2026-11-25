@@ -25,10 +25,11 @@ module input_parser_top(
     input logic i_rst,
 
     // Signals with UART Receiver
-    input logic i_uart_rx_in,
+    input logic [7:0] i_r_data,
+    input logic i_r_strobe, // 1-cycle pulse when data valid
 
     // Signals with colour_converter
-    output logic o_start,
-    output logic [5:0] o_weights [3] //3 values in array, red, then green, then blue
+    output logic o_converter_start,
+    output logic [5:0] o_rgb_weights [3] //3 values in array, red, then green, then blue
     );
 endmodule

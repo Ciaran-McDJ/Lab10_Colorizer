@@ -8,6 +8,9 @@ module colorizer_top (
     input  logic i_uart_rx_in,
     output logic o_uart_tx_out
 );
+    localparam int MEM_WIDTH = 128;
+    localparam int MEM_HEIGHT = 128;
+
     logic clk, rst, locked;
 
     clk_wiz_0 clk_wiz (
@@ -20,8 +23,7 @@ module colorizer_top (
         .clk_in1(i_sys_clk)      // input clk_in1
     );
     
-    proc_sys_reset_0 rst_gen
-    (
+    proc_sys_reset_0 rst_gen (
       .slowest_sync_clk(clk),
       .ext_reset_in(i_sys_rst),
       .aux_reset_in('0),
@@ -34,28 +36,83 @@ module colorizer_top (
       .peripheral_aresetn() 
     );
 
+    // Misc other signals
+    logic tick_16x;
 
+    // Signals between uart_receiver and input_parser
+    logic [7:0] r_data;
+    logic r_strobe;
 
+    // Signals between input_parser and colour_converter
+    logic converter_start;
+    logic [5:0] rgb_weights[3];
 
+    // Signals between our_colour_converter and memory_bram
+    logic [$clog2(WIDTH*HEIGHT)-1:0] mem_addr;
+    logic [7:0] mem_data;
 
-    // colour_converter_top our_colour_converter (
-    // .i_clk,
-    // input logic i_rst,
+    // Signals between our_colour_converter and uart_transmitter
+    logic t_busy, t_transmit;
+    logic [7:0] t_data;
+
+    baud_gen our_baud_gen (
+        .i_clk(clk),
+        .i_rst(rst),
+        .o_tick_16x(tick_16x)
+    );
+
+    uart_receiver our_uart_receiver (
+        .i_clk(clk),
+        .i_rst(rst),
+        // Oversampling tick input (e.g., from uart_baud_gen)
+        .i_tick_16x(tick_16x),
+        // UART line
+        .i_uart_rx_in(i_uart_rx_in),
+        // Output data
+        .o_data(r_data),
+        .o_strobe(r_strobe)  // 1-cycle pulse when data valid
+    );
+
+    input_parser_top our_input_parser (
+        .i_clk(clk),
+        .i_rst(rst),
+        // Signals with UART Receiver
+        .i_r_data(r_data),
+        .i_r_strobe(r_strobe),
+        // Signals with colour_converter
+        .o_converter_start(converter_start),
+        .o_rgb_weights(rgb_weights)
+    );
     
-    // // Signals with input_parser
-    // input logic i_start,
-    // input logic [5:0] i_weights [3],
+    colour_converter_top #(
+        .WIDTH(MEM_WIDTH),
+        .HEIGHT(MEM_HEIGHT)
+    ) our_colour_converter (
+        .i_clk(clk),
+        .i_rst(rst),
+        // Signals with input_parser
+        .i_converter_start(converter_start),
+        .i_rgb_weights(rgb_weights),
+        // Signals with UART Transmitter
+        .i_t_busy(t_busy),
+        .o_t_data(t_data),
+        .o_t_transmit(t_transmit),
+        // Signals with BRAM
+        .o_mem_addr(mem_addr),
+        .i_mem_data(mem_data)
+    );
 
-    // // Signals with UART Transmitter
-    // input logic i_t_busy,
-    // output logic [DATA_BITS-1:0] o_t_data,
-    // output logic o_t_transmit,
-
-    // // Signals with BRAM
-    // output logic o_mem_addr,
-    // input logic i_mem_data
-    // );
-
-
+    uart_transmitter our_uart_transmitter (
+        .i_clk(clk),
+        .i_rst(rst),
+        .i_tick_16x(tick_16x),
+        // UART line
+        ,o_uart_tx_out(o_uart_tx_out),  // idles high
+        // TX interface
+        .i_transmit(t_transmit),  // pulse high for 1 cycle to start
+        .i_data(t_data),
+        .o_busy(t_busy)
+    
+    );
 
 endmodule
