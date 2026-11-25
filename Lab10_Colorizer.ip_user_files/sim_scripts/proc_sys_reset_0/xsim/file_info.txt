@@ -1,0 +1,1 @@
+proc_sys_reset_0.vhd,vhdl,xil_defaultlib,../../../../Lab10_Colorizer.gen/sources_1/ip/proc_sys_reset_0/sim/proc_sys_reset_0.vhd,

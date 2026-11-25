@@ -20,19 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module colour_converter_top(
-    input logic i_sys_clk,
-    input logic i_sys_rst,
+module colour_converter_top #(
+    parameter int unsigned DATA_BITS = 8
+) (
+    input logic i_clk,
+    input logic i_rst,
     
     // Signals with input_parser
     input logic i_start,
     input logic [5:0] i_weights [3],
 
     // Signals with UART Transmitter
-    // TODO
+    input logic i_t_busy,
+    output logic [DATA_BITS-1:0] o_t_data,
+    output logic o_t_transmit,
 
     // Signals with BRAM
-    // TODO
-    
+    output logic o_mem_addr,
+    input logic i_mem_data
     );
 endmodule
