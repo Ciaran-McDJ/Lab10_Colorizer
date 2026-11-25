@@ -21,6 +21,14 @@
 
 
 module input_parser_top(
-    input testb
+    input logic i_clk,
+    input logic i_rst,
+
+    // Signals with UART Receiver
+    input logic i_uart_rx_in,
+
+    // Signals with colour_converter
+    output logic o_start,
+    output logic [5:0] o_weights [3] //3 values in array, red, then green, then blue
     );
 endmodule

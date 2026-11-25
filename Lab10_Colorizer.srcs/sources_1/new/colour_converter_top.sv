@@ -21,6 +21,18 @@
 
 
 module colour_converter_top(
-    input test
+    input logic i_sys_clk,
+    input logic i_sys_rst,
+    
+    // Signals with input_parser
+    input logic i_start,
+    input logic [5:0] i_weights [3],
+
+    // Signals with UART Transmitter
+    // TODO
+
+    // Signals with BRAM
+    // TODO
+    
     );
 endmodule
