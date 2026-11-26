@@ -48,7 +48,7 @@ module colorizer_top (
     logic [5:0] rgb_weights[3];
 
     // Signals between our_colour_converter and memory_bram
-    logic [$clog2(WIDTH*HEIGHT)-1:0] mem_addr;
+    logic [$clog2(MEM_WIDTH*MEM_HEIGHT)-1:0] mem_addr;
     logic [7:0] mem_data;
 
     // Signals between our_colour_converter and uart_transmitter
@@ -102,12 +102,19 @@ module colorizer_top (
         .i_mem_data(mem_data)
     );
 
+    memory_bram our_memory_bram (
+        .i_clk(clk),
+        .i_rst(rst),
+        .i_addr(mem_addr),
+        .o_data(mem_data)
+    );
+
     uart_transmitter our_uart_transmitter (
         .i_clk(clk),
         .i_rst(rst),
         .i_tick_16x(tick_16x),
         // UART line
-        ,o_uart_tx_out(o_uart_tx_out),  // idles high
+        .o_uart_tx_out(o_uart_tx_out),  // idles high
         // TX interface
         .i_transmit(t_transmit),  // pulse high for 1 cycle to start
         .i_data(t_data),
