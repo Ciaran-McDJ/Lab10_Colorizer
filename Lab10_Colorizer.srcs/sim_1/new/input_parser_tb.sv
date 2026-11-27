@@ -28,7 +28,7 @@ module input_parser_tb();
     logic [7:0] r_data;
     logic       r_strobe;
     logic       converter_start;
-    logic [5:0] rgb_weights [3];
+    logic [6:0] rgb_weights [3];
 
     always #(CLOCK_PERIOD/2) clk = ~clk;
 
@@ -137,6 +137,15 @@ module input_parser_tb();
         assert (rgb_weights[1] === 6'd1)
             else $error("g70 should be rejected, got G=%0d", rgb_weights[1]);
 
+        send_cmd("r31");
+        send_cmd("g0s");
+        send_cmd("b32");
+        send_cmd("");
+        send_cmd("ottawa");
+        send_cmd("s");
+        assert(rgb_weights[0] === 6'd31 && rgb_weights[1] === 6'd70 && rgb_weights[2] === 6'd32)
+            else $error("r31,g0s,b32 should be rejected, got %0d,%0d,%0d",
+                        rgb_weights[0], rgb_weights[1], rgb_weights[2]);
         #50;
         $finish;
     end

@@ -50,6 +50,8 @@ vivado.hw/
 vivado.ip_user_files/
 vivado.runs/
 vivado.sim/
+Lab10_Colorizer.srcs/sources_1/ip/*
+Lab10_Colorizer.gen/
 
 ###### for Xilinx Vivado|ISE
 .Xil/

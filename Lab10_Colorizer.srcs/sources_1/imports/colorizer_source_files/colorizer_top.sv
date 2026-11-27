@@ -45,7 +45,7 @@ module colorizer_top (
 
     // Signals between input_parser and colour_converter
     logic converter_start;
-    logic [5:0] rgb_weights[3];
+    logic [6:0] rgb_weights[3];
 
     // Signals between our_colour_converter and memory_bram
     logic [$clog2(MEM_WIDTH*MEM_HEIGHT)-1:0] mem_addr;
@@ -84,23 +84,23 @@ module colorizer_top (
         .o_rgb_weights(rgb_weights)
     );
     
-    colour_converter_top #(
-        .WIDTH(MEM_WIDTH),
-        .HEIGHT(MEM_HEIGHT)
-    ) our_colour_converter (
-        .i_clk(clk),
-        .i_rst(rst),
-        // Signals with input_parser
-        .i_converter_start(converter_start),
-        .i_rgb_weights(rgb_weights),
-        // Signals with UART Transmitter
-        .i_t_busy(t_busy),
-        .o_t_data(t_data),
-        .o_t_transmit(t_transmit),
-        // Signals with BRAM
-        .o_mem_addr(mem_addr),
-        .i_mem_data(mem_data)
-    );
+//    colour_converter_top #(
+//        .WIDTH(MEM_WIDTH),
+//        .HEIGHT(MEM_HEIGHT)
+//    ) our_colour_converter (
+//        .i_clk(clk),
+//        .i_rst(rst),
+//        // Signals with input_parser
+//        .i_converter_start(converter_start),
+//        .i_rgb_weights(rgb_weights),
+//        // Signals with UART Transmitter
+//        .i_t_busy(t_busy),
+//        .o_t_data(t_data),
+//        .o_t_transmit(t_transmit),
+//        // Signals with BRAM
+//        .o_mem_addr(mem_addr),
+//        .i_mem_data(mem_data)
+//    );
 
     memory_bram our_memory_bram (
         .i_clk(clk),
@@ -121,5 +121,19 @@ module colorizer_top (
         .o_busy(t_busy)
     
     );
+    
+    ila_0 your_instance_name (
+        .clk(clk), // input wire clk
+    
+    
+       // .probe0(o_rgb_weights) // input wire [5:0]  probe0  
+//        .probe1(probe1), // input wire [5:0]  probe1 
+//        .probe2(probe2), // input wire [1:0]  probe2 
+//        .probe3(probe3), // input wire [2:0]  probe3 
+        .probe4(rgb_weights[0]), // input wire [0:0]  probe4 
+        .probe5(rgb_weights[1]), // input wire [0:0]  probe5 
+        .probe6(rgb_weights[2]) // input wire [0:0]  probe6
+    );
+
 
 endmodule

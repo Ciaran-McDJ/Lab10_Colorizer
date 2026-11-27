@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2024.1 (lin64) Build 5076996 Wed May 22 18:36:09 MDT 2024
--- Date        : Wed Nov 25 17:56:54 2026
--- Host        : ciaran-mcdj-Laptop running 64-bit Ubuntu 24.04.5 LTS
+-- Tool Version: Vivado v.2024.1.2 (win64) Build 5164865 Thu Sep  5 14:37:11 MDT 2024
+-- Date        : Fri Nov 27 15:58:03 2026
+-- Host        : me4275-01 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               /home/ciaran-mcdj/Documents/School/ELEC3500_DigitalElectronics/Lab10/Lab10_Colorizer/Lab10_Colorizer.gen/sources_1/ip/proc_sys_reset_0/proc_sys_reset_0_sim_netlist.vhdl
+--               c:/lab_10/Lab10_Colorizer/Lab10_Colorizer.gen/sources_1/ip/proc_sys_reset_0/proc_sys_reset_0_sim_netlist.vhdl
 -- Design      : proc_sys_reset_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
