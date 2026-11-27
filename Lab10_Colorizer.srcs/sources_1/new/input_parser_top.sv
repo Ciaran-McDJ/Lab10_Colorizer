@@ -66,12 +66,20 @@ module input_parser_top(
             weight_val        <= 6'd0;
             o_converter_start <= 1'b0;
             // default to 16 so it starts as grayscale
-            saved_weights[0]  <= 6'd16;
+            // saved_weights[0]  <= 6'd16;
+            // saved_weights[1]  <= 6'd16;
+            // saved_weights[2]  <= 6'd16;
+            // o_rgb_weights[0]  <= 6'd16;
+            // o_rgb_weights[1]  <= 6'd16;
+            // o_rgb_weights[2]  <= 6'd16;
+
+            // haha. green mode.
+            saved_weights[0]  <= 6'd0;
             saved_weights[1]  <= 6'd16;
-            saved_weights[2]  <= 6'd16;
-            o_rgb_weights[0]  <= 6'd16;
+            saved_weights[2]  <= 6'd0;
+            o_rgb_weights[0]  <= 6'd0;
             o_rgb_weights[1]  <= 6'd16;
-            o_rgb_weights[2]  <= 6'd16;
+            o_rgb_weights[2]  <= 6'd0;
         end else if (i_r_strobe) begin
             o_converter_start <= 1'b0;
 

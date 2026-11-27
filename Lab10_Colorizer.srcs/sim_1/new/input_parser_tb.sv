@@ -42,11 +42,11 @@ module input_parser_tb();
     );
 
     task automatic send_byte(input logic [7:0] data);
-        @(negedge clk);
-        r_data   = data;
-        r_strobe = 1'b1;
-        @(negedge clk);
-        r_strobe = 1'b0;
+        @(posedge clk);
+        r_data   <= data;
+        r_strobe <= 1'b1;
+        @(posedge clk);
+        r_strobe <= 1'b0;
         repeat (2) @(posedge clk);
     endtask
 
@@ -59,11 +59,11 @@ module input_parser_tb();
 
     task automatic send_start();
         send_byte("s");
-        @(negedge clk);
-        r_data   = 8'h0D;
-        r_strobe = 1'b1;
-        @(negedge clk);
-        r_strobe = 1'b0;
+        @(posedge clk);
+        r_data   <= 8'h0D;
+        r_strobe <= 1'b1;
+        @(posedge clk);
+        r_strobe <= 1'b0;
     endtask
 
     initial begin
@@ -73,12 +73,13 @@ module input_parser_tb();
         r_strobe = 1'b0;
 
         repeat (5) @(posedge clk);
-        rst = 1'b0;
+        rst <= 1'b0;
         repeat (2) @(posedge clk);
+        #1;
 
         // Default weights after reset
-        assert (rgb_weights[0] === 6'd16 && rgb_weights[1] === 6'd16 && rgb_weights[2] === 6'd16)
-            else $error("Default weights expected 16,16,16 got %0d,%0d,%0d",
+        assert (rgb_weights[0] === 6'd0 && rgb_weights[1] === 6'd16 && rgb_weights[2] === 6'd0)
+            else $error("Default weights expected 0,16,0 got %0d,%0d,%0d",
                         rgb_weights[0], rgb_weights[1], rgb_weights[2]);
 
         // Set r31, g01, b05 then start
@@ -86,6 +87,7 @@ module input_parser_tb();
         send_cmd("g01");
         send_cmd("b05");
         send_start();
+        #1;
 
         assert (converter_start === 1'b1)
             else $error("converter_start did not assert on s<CR>");
@@ -94,7 +96,8 @@ module input_parser_tb();
             else $error("First start expected 31,1,5 got %0d,%0d,%0d",
                         rgb_weights[0], rgb_weights[1], rgb_weights[2]);
 
-        @(negedge clk);
+        @(posedge clk);
+        #1;
         assert (converter_start === 1'b0)
             else $error("converter_start stayed high for more than 1 cycle");
 
