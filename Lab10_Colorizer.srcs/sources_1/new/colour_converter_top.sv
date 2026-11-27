@@ -40,4 +40,5 @@ module colour_converter_top #(
     output logic [$clog2(WIDTH*HEIGHT)-1:0] o_mem_addr,
     input logic [7:0] i_mem_data
     );
+    // NOT BEING USED!!!!
 endmodule
