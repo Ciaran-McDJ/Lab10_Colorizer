@@ -142,7 +142,7 @@ module input_parser_top(
                     // already got a valid command so just ignore anything else until enter
                     if (i_r_data == ASCII_CR) begin
                         if (weight_val < 6'd31) begin
-                            saved_weights[channel] <= weight_val;
+                            saved_weights[channel] <= weight_val; // this might need to be sliced like weight_val[5:0]. cant test it rn
                         end
                         state <= IDLE;
                     end
